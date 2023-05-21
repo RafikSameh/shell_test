@@ -16,7 +16,7 @@ char *_strdup(char *str)
 	for (l = 0; str[l] != '\0';)
 		l++;
 
-	new = _calloc((sizeof(char) * l + 1), 1);
+	new = calloc((sizeof(char) * l + 1), 1);
 	if (!new)
 		return (NULL);
 
@@ -38,11 +38,11 @@ char *concat_all(char *name, char *sep, char *value)
 	char *result = NULL;
 	int l1 = 0, l2 = 0, l3 = 0, i = 0, k = 0;
 
-	l1 = _strlen(name);
-	l2 = _strlen(sep);
-	l3 = _strlen(value);
+	l1 = strlen(name);
+	l2 = strlen(sep);
+	l3 = strlen(value);
 
-	result = _calloc((l1 + l2 + l3 + 1), 1);
+	result = calloc((l1 + l2 + l3 + 1), 1);
 	if (!result)
 		return (NULL);
 
@@ -75,22 +75,6 @@ int _putchar(char c)
 	return (write(1, &c, 1));
 }
 
-/**
- * _strlen - count chars
- * @s: data from user
- * Return: The result
- */
-int _strlen(char *s)
-{
-	int i = 0, length = 0;
-
-	while (s[i++])
-	{
-		length++;
-	}
-
-	return (length);
-}
 
 /**
  * _puts - prints a string

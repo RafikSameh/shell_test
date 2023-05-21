@@ -49,7 +49,7 @@ int main(void)
 	list_path *head = '\0';
 	void (*f)(char **) = NULL; /* Declare the store of the func*/
 
-	signal(SIGINT, sig_handler); /*Signal be sure tat the user press the ctrl+c*/
+	signal(SIGINT, sig_handler); /*Signal be sure that the user press the ctrl+c*/
 	while (1) /*Starting the infinitive loop*/
 	{
 		_isatty(); /*Check if the input is interative or not interative*/
@@ -59,7 +59,7 @@ int main(void)
 		arv = splitstring(string, " \n"); /*Split the string into an array*/
 		if (arv[0])
 		{
-			value = _getenv("PATH"); /*Obtain the value from the environment variable*/
+			value = getenv("PATH"); /*Obtain the value from the environment variable*/
 			head = linkpath(value); /*Create an linked list of the path directories*/
 			pathname = _which(arv[0], head); /*Search if the command exits in paths*/
 			free_list(head); /*Free the linked list*/

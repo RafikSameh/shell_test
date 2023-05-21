@@ -1,37 +1,5 @@
 #include "shell.h"
 
-/**
- * _getenv - gets the value of the global variable
- * @name: name of the global variable
- * Return: string of value
- */
-char *_getenv(const char *name)
-{
-	int i = 0, j = 0; /* declared variables */
-	char *value = NULL;
-
-	if (!name)
-		return (NULL);
-	for (i = 0; environ[i]; i++) /* loop through the environment variable */
-	{
-		if (name[j] == environ[i][j]) /* check the first digit */
-		{
-			while (name[j])
-			{
-				if (name[j] != environ[i][j]) /* if the digits are different */
-					break;
-
-				j++;
-			}
-			if (name[j] == '\0') /* if the digits are equals */
-			{
-				value = (environ[i] + j + 1);
-				return (value);
-			}
-		}
-	}
-	return (0);
-}
 
 /**
  * add_node_end - adds a new node at the end of a list_t list
@@ -45,7 +13,7 @@ list_path *add_node_end(list_path **head, char *str)
 	list_path *tmp = NULL;
 	list_path *new = NULL;
 
-	new = _calloc((sizeof(list_path)), 1);
+	new = calloc((sizeof(list_path)), 1);
 
 	if (!new || !str)
 	{
@@ -84,7 +52,7 @@ list_path *linkpath(char *path)
 {
 	list_path *head = '\0'; /* declared variables */
 	char *token = NULL;
-	char *cpath = _strdup(path); /* copy the path */
+	char *cpath = strdup(path); /* copy the path */
 
 	token = strtok(cpath, ":"); /* divide the path in tokens */
 	while (token)

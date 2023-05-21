@@ -44,14 +44,12 @@ typedef struct mybuild
  * Functions
  */
 void sig_handler(int sig_num);
-int _strlen(char *s);
 void _puts(char *str);
 int _putchar(char c);
 void _EOF(int len, char *buff);
 void _isatty(void);
 char **splitstring(char *str, const char *delim);
 void execute(char **argv);
-char *_getenv(const char *name);
 char *_strdup(char *str);
 char *concat_all(char *name, char *sep, char *value);
 void(*checkbuild(char **arv))(char **arv);
@@ -60,7 +58,6 @@ list_path *add_node_end(list_path **head, char *str);
 char *_which(char *filename, list_path *head);
 void free_list(list_path *head);
 void freearv(char **arv);
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-void *_calloc(unsigned int nmemb, unsigned int size);
+
 
 #endif
