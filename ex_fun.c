@@ -28,13 +28,13 @@ char **splitstring(char *str, const char *delim)
 
 	token = strtok(copy, delim); /* Use the strtok to tokenize the string */
 	array = calloc((sizeof(char *)), 1); /* Allocate memory for the array */
-	array[0] = strdup(token); /* Copy the pointer of token into array */
+	array[0] = _strdup(token); /* Copy the pointer of token into array */
 
 	i = 1; /* index */
 	wn = 2; /* variable to reallocate the memory */
 	while ((token = strtok(NULL, delim)) != NULL) {
     		array = realloc(array, (sizeof(char *) * wn));
-    		array[i] = strdup(token);
+    		array[i] = _strdup(token);
     		i++;
     		wn++;
 	}
