@@ -32,13 +32,11 @@ char **splitstring(char *str, const char *delim)
 
 	i = 1; /* index */
 	wn = 2; /* variable to reallocate the memory */
-	while (token) /* Start the loop while token exits */
-	{
-		token = strtok(NULL, delim); /* Skip to the next token */
-		array = realloc(array, (sizeof(char *) * wn));
-		array[i] = _strdup(token); /* Copy the pointer of token into array */
-		i++;
-		wn++;
+	while ((token = strtok(NULL, delim)) != NULL) {
+    		array = realloc(array, (sizeof(char *) * wn));
+    		array[i] = strdup(token);
+    		i++;
+    		wn++;
 	}
 	free(copy); /* Free allocated memory */
 	return (array);
