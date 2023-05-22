@@ -38,9 +38,9 @@ char *concat_all(char *name, char *sep, char *value)
 	char *result = NULL;
 	int l1 = 0, l2 = 0, l3 = 0, i = 0, k = 0;
 
-	l1 = strlen(name);
-	l2 = strlen(sep);
-	l3 = strlen(value);
+	l1 = _strlen(name);
+	l2 = _strlen(sep);
+	l3 = _strlen(value);
 
 	result = calloc((l1 + l2 + l3 + 1), 1);
 	if (!result)
@@ -61,6 +61,21 @@ char *concat_all(char *name, char *sep, char *value)
 	result[k] = '\0';
 
 	return (result);
+}
+
+/**
+ * _strlen - is a function to calculate the length of string
+ * @string: is an array of characters
+ * Return: length of string
+ */
+int _strlen(char *string)
+{
+	int i = 0;
+	
+	while (string[i])
+		i++;
+		
+	return (i);
 }
 
 /**

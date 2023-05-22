@@ -48,6 +48,7 @@ void _puts(char *str);
 int _putchar(char c);
 void _EOF(int len, char *buff);
 void _isatty(void);
+int _strlen(char *string);
 char **splitstring(char *str, const char *delim);
 void execute(char **argv);
 char *_strdup(char *str);
