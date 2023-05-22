@@ -49,6 +49,7 @@ int _putchar(char c);
 void _EOF(int len, char *buff);
 void _isatty(void);
 int _strlen(char *string);
+char *_strdup(char *string);
 void *my_calloc(unsigned int nitems, unsigned int size);
 void *my_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 char **splitstring(char *str, const char *delim);

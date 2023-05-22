@@ -1,19 +1,18 @@
 #include "shell.h"
 
 /**
- * _strdup - returns a pointer to a newly allocated space in memory, which
- * contains a copy of the string given as a parameter
- * @str: pointer to a string
+ * _strdup - duplicate a string to a new pointer
+ * @string: pointer to a string
  * Return: pointer to a string
  */
-char *_strdup(char *str)
+char *_strdup(char *string)
 {
 	int i = 0, l = 0;
 	char *new = NULL;
 
-	if (!str)
+	if (!string)
 		return (NULL);
-	for (l = 0; str[l] != '\0';)
+	for (l = 0; string[l] != '\0';)
 		l++;
 
 	new = my_calloc((sizeof(char) * l + 1), 1);
@@ -21,8 +20,8 @@ char *_strdup(char *str)
 		return (NULL);
 
 	for (i = 0; i < l; i++)
-		new[i] = str[i];
-	new[l] = str[l];
+		new[i] = string[i];
+	new[l] = string[l];
 	return (new);
 }
 
