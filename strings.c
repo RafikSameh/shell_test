@@ -16,7 +16,7 @@ char *_strdup(char *str)
 	for (l = 0; str[l] != '\0';)
 		l++;
 
-	new = calloc((sizeof(char) * l + 1), 1);
+	new = my_calloc((sizeof(char) * l + 1), 1);
 	if (!new)
 		return (NULL);
 
@@ -42,7 +42,7 @@ char *concat_all(char *name, char *sep, char *value)
 	l2 = _strlen(sep);
 	l3 = _strlen(value);
 
-	result = calloc((l1 + l2 + l3 + 1), 1);
+	result = my_calloc((l1 + l2 + l3 + 1), 1);
 	if (!result)
 		return (NULL);
 
