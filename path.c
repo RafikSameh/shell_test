@@ -50,14 +50,14 @@ list_path *add_node_end(list_path **head, char *str)
  */
 list_path *linkpath(char *path)
 {
-	list_path *head = '\0'; 
+	list_path *head = '\0';
 	char *token = NULL;
-	char *cpath = strdup(path); 
+	char *cpath = strdup(path);
 
-	token = strtok(cpath, ":"); 
+	token = strtok(cpath, ":");
 	while (token)
 	{
-		head = add_node_end(&head, token); 
+		head = add_node_end(&head, token);
 		token = strtok(NULL, ":");
 	}
 	return (head);
@@ -74,12 +74,12 @@ char *_which(char *filename, list_path *head)
 	struct stat st;
 	char *string = NULL;
 
-	list_path *tmp = head; 
+	list_path *tmp = head;
 
-	while (tmp) 
+	while (tmp)
 	{
 
-		string = concat_all(tmp->dir, "/", filename); 
+		string = concat_all(tmp->dir, "/", filename);
 		if (stat(string, &st) == 0)
 		{
 			return (string);

@@ -70,10 +70,10 @@ char *concat_all(char *name, char *sep, char *value)
 int _strlen(char *string)
 {
 	int i = 0;
-	
+
 	while (string[i])
 		i++;
-		
+
 	return (i);
 }
 

@@ -6,7 +6,7 @@
  */
 int main(void)
 {
-	int bytes_read = 0; 
+	int bytes_read = 0;
 	char *string = NULL, *value = NULL, *pathname = NULL, **arv = NULL;
 	size_t size = 0;
 	list_path *head = '\0';
