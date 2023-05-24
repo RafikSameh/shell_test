@@ -50,15 +50,15 @@ list_path *add_node_end(list_path **head, char *str)
  */
 list_path *linkpath(char *path)
 {
-	list_path *head = '\0'; /* declared variables */
+	list_path *head = '\0'; 
 	char *token = NULL;
-	char *cpath = strdup(path); /* copy the path */
+	char *cpath = strdup(path); 
 
-	token = strtok(cpath, ":"); /* divide the path in tokens */
+	token = strtok(cpath, ":"); 
 	while (token)
 	{
-		head = add_node_end(&head, token); /* assign the path */
-		token = strtok(NULL, ":"); /* next token */
+		head = add_node_end(&head, token); 
+		token = strtok(NULL, ":");
 	}
 	return (head);
 }
@@ -71,25 +71,21 @@ list_path *linkpath(char *path)
  */
 char *_which(char *filename, list_path *head)
 {
-	/* declared variables */
 	struct stat st;
 	char *string = NULL;
 
-	list_path *tmp = head; /* create a copy of head */
+	list_path *tmp = head; 
 
-	while (tmp) /* loop through list of paths */
+	while (tmp) 
 	{
 
-		string = concat_all(tmp->dir, "/", filename); /* possible executables */
+		string = concat_all(tmp->dir, "/", filename); 
 		if (stat(string, &st) == 0)
-		/* The stat() function shall continue pathname */
-		/* resolution using the contents of string, and shall return */
-		/* information pertaining to the resulting file if the file exists */
 		{
 			return (string);
 		}
 		free(string);
-		tmp = tmp->p; /* next node */
+		tmp = tmp->p;
 	}
 
 	return (NULL);

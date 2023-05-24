@@ -1,44 +1,44 @@
 #include "shell.h"
 
 /**
- * splitstring - splits a string and makes it an array of pointers to words
+ * splitstring - splits a string and makes it an array of pointers
  * @str: the string to be split
  * @delim: the delimiter
  * Return: array of pointers to words
  */
 char **splitstring(char *str, const char *delim)
 {
-	int i = 0, wn = 0; /* declared variables */
+	int i = 0, wn = 0; 
 	char **array = NULL;
 	char *token = NULL;
 	char *copy = NULL;
 
-	copy = my_calloc((_strlen(str) + 1), 1); /* allocate the space in */
-	if (!copy)					/*memory of the string received */
+	copy = my_calloc((_strlen(str) + 1), 1); 
+	if (!copy)					
 	{
 		perror(getenv("_"));
 		return (NULL);
 	}
-	while (str[i]) /* Copy the string received into anothe variable */
+	while (str[i]) 
 	{
 		copy[i] = str[i];
 		i++;
 	}
 	copy[i] = '\0';
 
-	token = strtok(copy, delim); /* Use the strtok to tokenize the string */
-	array = my_calloc((sizeof(char *)), 1); /* Allocate memory for the array */
-	array[0] = _strdup(token); /* Copy the pointer of token into array */
+	token = strtok(copy, delim);
+	array = my_calloc((sizeof(char *)), 1);
+	array[0] = _strdup(token); 
 
-	i = 1; /* index */
-	wn = 2; /* variable to reallocate the memory */
+	i = 1; 
+	wn = 2; 
 	while ((token = strtok(NULL, delim)) != NULL) {
     		array = my_realloc(array, (sizeof(char *) * (wn - 1)), (sizeof(char *) * wn));
     		array[i] = _strdup(token);
     		i++;
     		wn++;
 	}
-	free(copy); /* Free allocated memory */
+	free(copy); 
 	return (array);
 }
 
@@ -68,7 +68,7 @@ void *my_calloc(unsigned int nitems, unsigned int size)
 }
 
 /**
- * _realloc - it is a function to reallocates memory block
+ * my_realloc - it is a function to reallocates memory block
  * @ptr: previous pointer
  * @old_size: old size of pointer
  * @new_size: new size for pointer
@@ -121,19 +121,19 @@ void *my_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
  */
 void execute(char **arv)
 {
-	int d = 0, status; /* declared variables */
+	int d = 0, status; 
 
 	if (!arv || !arv[0])
 		return;
-	d = fork(); /* fork the process */
-	if (d == -1) /* if the fork failed error*/
+	d = fork(); 
+	if (d == -1) 
 	{
 		perror(getenv("_"));
 	}
-	if (d == 0) /* if the fork succeeded execute the command */
+	if (d == 0) 
 	{
-		execve(arv[0], arv, environ); /* replace the child process */
-			perror(arv[0]); /* if the execve failed error and exit*/
+		execve(arv[0], arv, environ); 
+			perror(arv[0]); 
 		exit(EXIT_FAILURE);
 	}
 	freearv(arv);
