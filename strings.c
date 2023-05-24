@@ -26,7 +26,7 @@ char *_strdup(char *string)
 }
 
 /**
- * concat_all - concats 3 strings in a newly allocated memory
+ * concat_all - concats 3 strings in newly allocated memory
  * @name: first string
  * @sep: second string
  * @value: Third string
@@ -80,7 +80,6 @@ int _strlen(char *string)
 /**
  * _putchar - writes the character c to stdout
  * @c: The character to print
- *
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
