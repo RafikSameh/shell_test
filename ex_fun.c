@@ -8,18 +8,18 @@
  */
 char **splitstring(char *str, const char *delim)
 {
-	int i = 0, wn = 0; 
+	int i = 0, wn = 0;
 	char **array = NULL;
 	char *token = NULL;
 	char *copy = NULL;
 
-	copy = my_calloc((_strlen(str) + 1), 1); 
-	if (!copy)					
+	copy = my_calloc((_strlen(str) + 1), 1);
+	if (!copy)
 	{
 		perror(getenv("_"));
 		return (NULL);
 	}
-	while (str[i]) 
+	while (str[i])
 	{
 		copy[i] = str[i];
 		i++;
@@ -28,24 +28,26 @@ char **splitstring(char *str, const char *delim)
 
 	token = strtok(copy, delim);
 	array = my_calloc((sizeof(char *)), 1);
-	array[0] = _strdup(token); 
+	array[0] = _strdup(token);
 
-	i = 1; 
-	wn = 2; 
-	while ((token = strtok(NULL, delim)) != NULL) {
-    		array = my_realloc(array, (sizeof(char *) * (wn - 1)), (sizeof(char *) * wn));
-    		array[i] = _strdup(token);
-    		i++;
-    		wn++;
+	i = 1;
+	wn = 2;
+	while ((token = strtok(NULL, delim)) != NULL)
+	{
+		array = my_realloc(array,
+		(sizeof(char *) * (wn - 1)), (sizeof(char *) * wn));
+		array[i] = _strdup(token);
+		i++;
+		wn++;
 	}
-	free(copy); 
+	free(copy);
 	return (array);
 }
 
 /**
  * my_calloc - allocates memory using malloc, and initializes it to zero
  * @size: size of the memory block to be allocated
- * @nmemb: number of elements
+ * @nitems: number of elements
  *
  * Return: pointer to the address of the memory block
  */
@@ -121,19 +123,19 @@ void *my_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
  */
 void execute(char **arv)
 {
-	int d = 0, status; 
+	int d = 0, status;
 
 	if (!arv || !arv[0])
 		return;
-	d = fork(); 
-	if (d == -1) 
+	d = fork();
+	if (d == -1)
 	{
 		perror(getenv("_"));
 	}
-	if (d == 0) 
+	if (d == 0)
 	{
-		execve(arv[0], arv, environ); 
-			perror(arv[0]); 
+		execve(arv[0], arv, environ);
+			perror(arv[0]);
 		exit(EXIT_FAILURE);
 	}
 	freearv(arv);

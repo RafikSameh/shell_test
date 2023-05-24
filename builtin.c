@@ -70,7 +70,7 @@ void exitt(char **arv)
 void(*checkbuild(char **arv))(char **arv)
 {
 	int i = 0, j = 0;
-	
+
 	mybuild T[] = {
 		{"exit", exitt},
 		{"env", env},
