@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * _atoi - converts a string into an integer
- *@x: pointer to a string
- *Return: the integer
+ * _atoi - function that converts a string into an integer
+ *@x: ptr to the string
+ *Return: int
  */
 int _atoi(char *x)
 {
@@ -26,28 +26,6 @@ int _atoi(char *x)
 }
 
 /**
- * exitt - exits the shell with or without a return of status n
- * @arv: array of words of the entered line
- */
-void exitt(char **arv)
-{
-	int i = 0, n = 0; /* declared variables */
-
-	if (arv[1]) /* check if the user entered the status of exit */
-	{
-		n = _atoi(arv[1]);
-		if (n <= -1)
-			n = 2;
-		freearv(arv);
-		exit(n); /* exit with this exact status */
-	}
-	for (i = 0; arv[i]; i++)
-		free(arv[i]);
-	free(arv); /* free memory */
-	exit(0);
-}
-
-/**
  * env - prints the current environment
  * @arv: array of arguments
  */
@@ -63,29 +41,52 @@ void env(char **arv __attribute__ ((unused)))
 }
 
 /**
-* checkbuild - checks if the command is a buildin
+ * exitt - exits the shell with or without a return of status n
+ * @arv: array of words of the entered line
+ */
+void exitt(char **arv)
+{
+	int i = 0, n = 0;
+
+	if (arv[1])
+	{
+		n = _atoi(arv[1]);
+		if (n <= -1)
+			n = 2;
+		freearv(arv);
+		exit(n); /* exit with this exact status */
+	}
+	for (i = 0; arv[i]; i++)
+		free(arv[i]);
+	free(arv);
+	exit(0);
+}
+
+/**
+* checkbuild - checks if the command is a builtin command
 * @arv: array of arguments
-* Return: pointer to function that takes arv and returns void
+* Return: pointer to function
 */
 void(*checkbuild(char **arv))(char **arv)
 {
-	int i = 0, j = 0; /* declared variables */
-	mybuild T[] = { /* structure of buildings */
+	int i = 0, j = 0;
+	
+	mybuild T[] = {
 		{"exit", exitt},
 		{"env", env},
 		{NULL, NULL}
 	};
 
-	for (i = 0; T[i].name; i++) /* loop through the structure */
+	for (i = 0; T[i].name; i++)
 	{
-		if (T[i].name[j] == arv[0][j]) /* check the first digit */
+		if (T[i].name[j] == arv[0][j])
 		{
-			for (j = 0; arv[0][j]; j++) /* loop through the input */
+			for (j = 0; arv[0][j]; j++)
 			{
-				if (T[i].name[j] != arv[0][j]) /* if the digit are different */
-					break;						/* break out of loop */
+				if (T[i].name[j] != arv[0][j])
+					break;
 			}
-			if (!arv[0][j])	/* if the last digit is '\0' */
+			if (!arv[0][j])
 				return (T[i].func);
 		}
 	}

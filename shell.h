@@ -1,9 +1,6 @@
 #ifndef SHELL_H
 #define SHELL_H
 
-/**
- * Libraries
- */
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -19,9 +16,9 @@
 extern char **environ;
 
 /**
- * struct list_path - Linked list containing PATH directories
- * @dir: directory in path
- * @p: pointer to next node
+ * struct list_path - containing the PATH of directories
+ * @dir: dir in path
+ * @p: ptr to next node
  */
 typedef struct list_path
 {
@@ -30,9 +27,9 @@ typedef struct list_path
 } list_path;
 
 /**
- * struct mybuild - pointer to function with corresponding buildin command
- * @name: buildin command
- * @func: execute the buildin command
+ * struct mybuild - pointer to function with corresponding builtin cmd
+ * @name: builtin cmd
+ * @func: execute the builtin cmd
  */
 typedef struct mybuild
 {
@@ -54,14 +51,13 @@ void *my_calloc(unsigned int nitems, unsigned int size);
 void *my_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 char **splitstring(char *str, const char *delim);
 void execute(char **argv);
+void freearv(char **arv);
+void free_list(list_path *head);
 char *_strdup(char *str);
 char *concat_all(char *name, char *sep, char *value);
-void(*checkbuild(char **arv))(char **arv);
 list_path *linkpath(char *path);
 list_path *add_node_end(list_path **head, char *str);
+void(*checkbuild(char **arv))(char **arv);
 char *_which(char *filename, list_path *head);
-void free_list(list_path *head);
-void freearv(char **arv);
-
 
 #endif
