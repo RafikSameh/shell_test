@@ -1,4 +1,6 @@
 #include "shell.h"
+#include <stdlib.h>
+#include <stdint.h>
 
 /**
  * splitstring - splits a string and makes it an array of pointers
@@ -51,7 +53,7 @@ char **splitstring(char *str, const char *delim)
  *
  * Return: pointer to the address of the memory block
  */
-void *my_calloc(unsigned int nitems, unsigned int size)
+/*void *my_calloc(unsigned int nitems, unsigned int size)
 {
 	char *block = NULL;
 	unsigned int i = 0;
@@ -67,6 +69,23 @@ void *my_calloc(unsigned int nitems, unsigned int size)
 	}
 	else
 		return (NULL);
+}*/
+
+
+
+void *my_calloc(unsigned int nitems, unsigned int size)
+{
+    void *block = NULL;
+    uintmax_t total_size = (uintmax_t)nitems * (uintmax_t)size;
+
+    if (nitems == 0 || size == 0 || total_size > SIZE_MAX)
+        return NULL;
+
+    block = malloc(total_size);
+    if (block != NULL) {
+        memset(block, 0, total_size);
+    }
+    return block;
 }
 
 /**
